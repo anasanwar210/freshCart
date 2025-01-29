@@ -9,7 +9,7 @@ import { RegisterComponent } from './layout/pages/register/register.component';
 import { NotfoundComponent } from './layout/additions/notfound/notfound.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'register', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'cart', component: CartComponent },
   { path: 'products', component: ProductsComponent },

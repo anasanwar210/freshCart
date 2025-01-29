@@ -72,7 +72,8 @@
               "buildTarget": "freshCart:build:production"
             },
             "development": {
-              "buildTarget": "freshCart:build:development"
+              "buildTarget": "freshCart:build:development",
+              "hmr": false
             }
           },
           "defaultConfiguration": "development"

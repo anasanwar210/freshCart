@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Encode Sans Expanded", serif;
+}
 
 .btn {
   @apply px-4 py-2 transition-all duration-300 bg-green-400 text-white rounded-lg hover:bg-white hover:text-green-400 border-solid border-2 hover:border-green-400;

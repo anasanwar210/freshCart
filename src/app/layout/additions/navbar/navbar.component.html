@@ -2,7 +2,7 @@
   <div class="flex flex-col  md:grid md:grid-cols-[20%_minmax(0,1fr)] max-w-screen-xl p-4 mx-auto">
     <div class="flex justify-between">
       <a [routerLink]="isRegisterPage?'':'home'" class="flex items-center justify-center space-x-3 rtl:space-x-reverse">
-        <img src="assets/images/freshcart-logo.svg" class="h-8 " alt="Flowbite Logo" />
+        <img src="assets/images/freshcart-logo.svg" class="h-8 invert" alt="Flowbite Logo" />
       </a>
       <!-- <li>
           <div class="relative inline-block w-10 mr-2 align-middle transition duration-200 ease-in select-none">
@@ -21,19 +21,22 @@
             d="M1 1h15M1 7h15M1 13h15" />
         </svg>
       </button>
+
     </div>
     <div class="hidden w-full md:flex md:justify-between md:px-2 md:w-auto ms-auto" id="navbar-default">
-      @if (!isRegisterPage) {
+      <!-- @if (!isRegisterPage) { -->
       <ul
         class="flex flex-col gap-2 p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 md:flex-row md:space-x-1 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li>
           <a routerLink="home" routerLinkActive="bg-green-400 text-white rounded-lg"
             class="block px-3 py-2 text-white dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
         </li>
+        @if (isLogin) {
         <li>
           <a routerLink="cart" routerLinkActive="bg-green-400 text-white rounded-lg"
             class="block px-3 py-2 text-white md:border-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Cart</a>
         </li>
+        }
         <li>
           <a routerLink="products" routerLinkActive="bg-green-400 text-white rounded-lg"
             class="block px-3 py-2 text-white md:border-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Products</a>
@@ -47,10 +50,11 @@
             class="block px-3 py-2 text-white md:border-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Brands</a>
         </li>
       </ul>
-      }
+      <!-- } -->
       <ul
         class="flex-col hidden p-4 mt-4 font-medium border border-gray-100 rounded-lg md:flex md:p-0 md:flex-row rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        @if (isRegisterPage) {
+
+        @if (!isLogin) {
         <li>
           <a routerLink="signin" routerLinkActive="bg-green-400 text-white rounded-lg"
             class="block px-3 py-2 text-white dark:text-white md:dark:text-blue-500" aria-current="page">SignIn</a>
@@ -60,10 +64,11 @@
             class="block px-3 py-2 text-white md:border-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Register</a>
         </li>
         }
-        @if (!isRegisterPage) {
+
+        @if (isLogin) {
         <li class="flex items-center mx-3">
           <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-            class="flex items-center justify-between w-full px-3 py-2 text-black rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"><img
+            class="flex items-center justify-between w-full px-3 py-2 text-black rounded-sm cursor-pointer hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"><img
               src="assets/images/Bassem_Samra.png" class="w-10 h-10 rounded-full" alt=""></button>
           <!-- Dropdown menu -->
           <div id="dropdownNavbar"
@@ -78,16 +83,16 @@
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
               </li>
               <li class="flex items-center justify-center gap-3">
-                <a href=""><i class="fa-brands fa-instagram"></i></a>
-                <a href=""><i class="fa-brands fa-facebook"></i></a>
-                <a href=""><i class="fa-brands fa-tiktok"></i></a>
-                <a href=""><i class="fa-brands fa-twitter"></i></a>
-                <a href=""><i class="fa-brands fa-linkedin"></i></a>
-                <a href=""><i class="fa-brands fa-youtube"></i></a>
+                <a href=""><i class="fa-brands fa-instagram dark:text-white"></i></a>
+                <a href=""><i class="fa-brands fa-facebook dark:text-white"></i></a>
+                <a href=""><i class="fa-brands fa-tiktok dark:text-white"></i></a>
+                <a href=""><i class="fa-brands fa-twitter dark:text-white"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin dark:text-white"></i></a>
+                <a href=""><i class="fa-brands fa-youtube dark:text-white"></i></a>
               </li>
             </ul>
             <div class="py-1">
-              <a
+              <a (click)="_AuthService.logout()"
                 class="block px-4 py-2 text-sm text-black cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                 SignOut
               </a>
@@ -96,22 +101,25 @@
         </li>
         }
       </ul>
-      @if (!isRegisterPage) {
+      <!-- @if (!isRegisterPage) { -->
       <ul
         class="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:hidden md:p-0 md:flex-row rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li class="flex items-center justify-center gap-3">
-          <a href=""><i class="fa-brands fa-instagram"></i></a>
-          <a href=""><i class="fa-brands fa-facebook"></i></a>
-          <a href=""><i class="fa-brands fa-tiktok"></i></a>
-          <a href=""><i class="fa-brands fa-twitter"></i></a>
-          <a href=""><i class="fa-brands fa-linkedin"></i></a>
-          <a href=""><i class="fa-brands fa-youtube"></i></a>
+          <a href=""><i class="fa-brands fa-instagram dark:text-white"></i></a>
+          <a href=""><i class="fa-brands fa-facebook dark:text-white"></i></a>
+          <a href=""><i class="fa-brands fa-tiktok dark:text-white"></i></a>
+          <a href=""><i class="fa-brands fa-twitter dark:text-white"></i></a>
+          <a href=""><i class="fa-brands fa-linkedin dark:text-white"></i></a>
+          <a href=""><i class="fa-brands fa-youtube dark:text-white"></i></a>
         </li>
+        @if (isLogin) {
         <li class="mb-3">
           <a
-            class="block px-4 py-2 text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+            class="block px-4 py-2 text-black rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
         </li>
+        }
 
+        <!-- @if (!isLogin) {
         <li class="hidden">
           <a routerLink="signin" routerLinkActive="bg-green-400 text-white rounded-lg"
             class="block px-3 py-2 text-white dark:text-white md:dark:text-blue-500" aria-current="page">SignIn</a>
@@ -120,17 +128,20 @@
           <a routerLink="register" routerLinkActive="bg-green-400 text-white rounded-lg"
             class="block px-3 py-2 text-white md:border-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Register</a>
         </li>
+        } -->
+        @if (isLogin) {
         <li class="mb-3">
-          <a
+          <a (click)="_AuthService.logout()"
             class="block px-4 py-2 text-sm text-black cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
             SignOut
           </a>
         </li>
+        }
       </ul>
-      }
+      <!-- } -->
       <ul
         class="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:hidden md:p-0 md:flex-row rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        @if (isRegisterPage) {
+        @if (!isLogin) {
         <li>
           <a routerLink="signin" routerLinkActive="bg-green-400 text-white rounded-lg"
             class="block px-3 py-2 text-white dark:text-white md:dark:text-blue-500" aria-current="page">SignIn</a>

@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { FlowbiteService } from '../../../shared/services/flowbite/flowbite.service';
-import {
-  NavigationEnd,
-  Router,
-  RouterLink,
-  RouterLinkActive,
-} from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../../shared/services/auth/auth.service';
+import 'flowbite';
 
 @Component({
   selector: 'app-navbar',
@@ -14,23 +11,23 @@ import {
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
+  isSidebarOpen = false;
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
   isRegisterPage: boolean = false;
+  isLogin: boolean = false;
   constructor(
     private flowbiteService: FlowbiteService,
-    private _Router: Router
+    public _AuthService: AuthService
   ) {}
   ngOnInit(): void {
-    this.flowbiteService.loadFlowbite((flowbite) => {});
-    this._Router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        if (
-          this._Router.url.includes('/register') ||
-          this._Router.url.includes('/signin')
-        ) {
-          this.isRegisterPage = true;
-        } else {
-          this.isRegisterPage = false;
-        }
+    this._AuthService.userData.subscribe((res) => {
+      if (res != null) {
+        this.isLogin = true;
+      } else {
+        this.isLogin = false;
       }
     });
   }

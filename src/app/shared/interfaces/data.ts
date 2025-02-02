@@ -1,29 +1,60 @@
 // #Sign-In Interface
-export interface signInData {
+export interface ISignInData {
   email: string;
   password: string;
 }
 
+export interface IFailSignInResponse {
+  statusMsg: string;
+  message: string;
+  token: string;
+}
+
+export interface ISuccessSignInResponse {
+  message: string;
+  user: IUser;
+  token: string;
+}
+
 // #Sign-Up Interface
-export interface signUpData extends signInData {
+export interface ISignUpData {
   name: string;
+  email: string;
+  password: string;
   rePassword: string;
   phone: string;
 }
 
-export interface ApiFailResponse {
-  statusMsg: string;
+export interface ISuccessSignUpResponse {
   message: string;
-}
-
-export interface ApiSuccessResponse {
-  message: string;
-  user: User;
+  user: IUser;
   token: string;
 }
 
-export interface User {
+export interface IFailSignUpResponse {
+  statusMsg: string;
+  message: string;
+  token: string;
+}
+
+export interface IUser {
   name: string;
   email: string;
   role: string;
+}
+
+// Token
+export interface IToken {
+  exp: number;
+  iat: number;
+  id: string;
+  name: string;
+  role: string;
+}
+
+// Verify Token
+
+export interface IVerifyTokenResponse {
+  message: string;
+  user: IUser;
 }

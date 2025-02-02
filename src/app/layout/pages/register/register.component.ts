@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, viewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth/auth.service';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -71,6 +71,8 @@ export class RegisterComponent {
           this._Router.navigate(['home']);
           this.dataSent = false;
           this.resetForm();
+          localStorage.setItem('token', res.token);
+          this._AuthService.tokenDecoded();
         },
         error: (err) => {
           this.dataSent = false;
@@ -92,4 +94,7 @@ export class RegisterComponent {
     this.registerForm.reset();
     this.agreeTerms.nativeElement.checked = false;
   }
+}
+function tokenDecoded() {
+  throw new Error('Function not implemented.');
 }

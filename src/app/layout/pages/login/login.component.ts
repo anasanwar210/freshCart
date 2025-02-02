@@ -21,11 +21,14 @@ export class LoginComponent {
 
   constructor(private _AuthService: AuthService, private _Router: Router) {}
   logInForm: FormGroup = new FormGroup({
-    email: new FormControl(null, Validators.required),
-    password: new FormControl(null, [Validators.required]),
+    email: new FormControl(null, [Validators.required, Validators.email]),
+    password: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(/^[A-Z][A-z0-9]{7,}$/),
+    ]),
   });
 
-  submitRegister() {
+  submitLogin() {
     if (this.logInForm.valid) {
       this.dataSent = true;
       this._AuthService.signin(this.logInForm.value).subscribe({
@@ -33,6 +36,8 @@ export class LoginComponent {
           this._Router.navigate(['home']);
           this.dataSent = false;
           this.resetForm();
+          localStorage.setItem('token', res.token);
+          this._AuthService.tokenDecoded();
         },
         error: (err) => {
           this.dataSent = false;

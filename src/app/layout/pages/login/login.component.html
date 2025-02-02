@@ -13,7 +13,7 @@
       </svg>
     </div>
     }
-    <form [formGroup]="logInForm" (ngSubmit)="submitRegister()" class="p-6 rounded-lg shadow-xl">
+    <form [formGroup]="logInForm" (ngSubmit)="submitLogin()" class="p-6 rounded-lg shadow-xl">
       <h1 class="px-6 py-2 mb-5 text-4xl font-extrabold text-center text-white bg-green-400 rounded-lg shadow-md">
         Login Now
       </h1>
@@ -47,11 +47,11 @@
         }
         @if (errMSG) {
         <div class="alert">
-          <p class="font-semibold">{{errMSG}} Check Your Internet Connection</p>
+          <p class="font-semibold">{{errMSG}} OR Check Your Internet Connection</p>
         </div>
         }
       </div>
-      <div class="mb-6">
+      <div class="mb-4">
         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
         <input [class.border-red-500]="logInForm.get('password')?.errors&& logInForm.get('password')?.touched"
           [class.border-green-500]="logInForm.get('password')?.valid" formControlName="password" type="password"
@@ -70,9 +70,11 @@
         </div>
         }
       </div>
+      <div class="mb-3 select-none">
+        <button class="hover:underline text-xs cursor-pointer text-blue-600">Forget Password?</button>
+      </div>
       <div class="mb-3 text-right select-none">
-        <button [disabled]='logInForm.invalid' [class.cursor-not-allowed]="logInForm.invalid"
-          class="btn">Register</button>
+        <button [disabled]='logInForm.invalid' [class.cursor-not-allowed]="logInForm.invalid" class="btn">LogIn</button>
       </div>
     </form>
   </div>

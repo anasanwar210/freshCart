@@ -58,3 +58,33 @@ export interface IVerifyTokenResponse {
   message: string;
   user: IUser;
 }
+
+// #Reset Password Interface
+
+export interface IForgottenPasswordData {
+  email: string;
+}
+
+export interface IForgottenPasswordResponse {
+  statusMsg: string;
+  message: string;
+}
+
+export interface ISubmitCodeData {
+  resetCode: string;
+}
+
+export interface ISubmitCodeResponse {
+  status?: string;
+  statusMsg?: string;
+  message?: string;
+}
+
+// #Change Password Interface
+
+export interface IChangePasswordData {
+  email: string;
+  newPassword: string;
+}
+
+export interface IChangePasswordResponse extends ISubmitCodeResponse {}

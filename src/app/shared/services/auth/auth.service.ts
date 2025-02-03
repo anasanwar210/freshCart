@@ -1,10 +1,16 @@
 import { Router } from '@angular/router';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import {
+  IChangePasswordData,
+  IChangePasswordResponse,
   IFailSignInResponse,
   IFailSignUpResponse,
+  IForgottenPasswordData,
+  IForgottenPasswordResponse,
   ISignInData,
   ISignUpData,
+  ISubmitCodeData,
+  ISubmitCodeResponse,
   ISuccessSignInResponse,
   ISuccessSignUpResponse,
 } from './../../interfaces/data';
@@ -40,6 +46,12 @@ export class AuthService {
       }
     }
   }
+  /*
+  ===============================================================
+  -----------------------Start SignUp Method
+  ===============================================================
+  */
+
   signup(
     data: ISignUpData
   ): Observable<IFailSignUpResponse | ISuccessSignUpResponse> {
@@ -49,11 +61,43 @@ export class AuthService {
     );
   }
 
+  /*
+  ===============================================================
+  -----------------------Start SignIn Method
+  ===============================================================
+  */
+
   signin(
     data: ISignInData
   ): Observable<IFailSignInResponse | ISuccessSignInResponse> {
     return this.http.post<IFailSignInResponse | ISuccessSignInResponse>(
       `${environment.baseURL}/api/v1/auth/signin`,
+      data
+    );
+  }
+
+  /*
+  ===============================================================
+  -----------------------Start LogOut Method
+  ===============================================================
+  */
+  logout() {
+    localStorage.removeItem('token');
+    this.userData.next(null);
+    this._Router.navigate(['/signin']);
+  }
+
+  /*
+  ===============================================================
+  ----------------Start Forget Password Method
+  ===============================================================
+  */
+
+  forgetPassword(
+    data: IForgottenPasswordData
+  ): Observable<IForgottenPasswordResponse> {
+    return this.http.post<IForgottenPasswordResponse>(
+      `${environment.baseURL}/api/v1/auth/forgotPasswords`,
       data
     );
   }
@@ -65,16 +109,24 @@ export class AuthService {
     this.userData.next(decoded);
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    this.userData.next(null);
-    this._Router.navigate(['/signin']);
-  }
-
   verifyToken(): Observable<any> {
     const token = localStorage.getItem('token') || '';
     return this.http.get(`${environment.baseURL}/api/v1/auth/verifyToken`, {
       headers: { token: token },
     });
+  }
+
+  resetCode(data: ISubmitCodeData): Observable<ISubmitCodeResponse> {
+    return this.http.post<ISubmitCodeResponse>(
+      `${environment.baseURL}/api/v1/auth/verifyResetCode`,
+      data
+    );
+  }
+
+  newPassword(data: IChangePasswordData): Observable<IChangePasswordResponse> {
+    return this.http.put<IChangePasswordResponse>(
+      `${environment.baseURL}/api/v1/auth/resetPassword`,
+      data
+    );
   }
 }

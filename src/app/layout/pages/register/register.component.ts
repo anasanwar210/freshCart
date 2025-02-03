@@ -95,6 +95,3 @@ export class RegisterComponent {
     this.agreeTerms.nativeElement.checked = false;
   }
 }
-function tokenDecoded() {
-  throw new Error('Function not implemented.');
-}

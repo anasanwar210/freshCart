@@ -8,20 +8,45 @@ import { BrandsComponent } from './layout/pages/brands/brands.component';
 import { LoginComponent } from './layout/pages/login/login.component';
 import { RegisterComponent } from './layout/pages/register/register.component';
 import { NotfoundComponent } from './layout/additions/notfound/notfound.component';
-import { guestGuardGuard } from './shared/guards/GuestGuard/guest-guard.guard';
+import { guestGuard } from './shared/guard/guest/guest.guard';
+import { ForgetPasswordComponent } from './layout/additions/forget-password/forget-password.component';
+import { SubmitCodeComponent } from './layout/additions/submit-code/submit-code.component';
+import { NewPasswordComponent } from './layout/additions/new-password/new-password.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'register', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'cart', component: CartComponent, canActivate: [authGuard] },
-  { path: 'products', component: ProductsComponent },
-  { path: 'categories', component: CategoriesComponent },
-  { path: 'brands', component: BrandsComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent, title: 'Home' },
+  {
+    path: 'cart',
+    component: CartComponent,
+    title: 'Cart',
+    canActivate: [authGuard],
+  },
+  { path: 'products', component: ProductsComponent, title: 'Products' },
+  { path: 'categories', component: CategoriesComponent, title: 'Categories' },
+  { path: 'brands', component: BrandsComponent, title: 'Brands' },
+  { path: 'submitCode', component: SubmitCodeComponent, title: 'Submit Code' },
+  {
+    path: 'setNewPassword',
+    component: NewPasswordComponent,
+    title: 'Set New Password',
+  },
+  {
+    path: 'forgetPassword',
+    component: ForgetPasswordComponent,
+    title: 'Find My Account',
+  },
   {
     path: 'signin',
     component: LoginComponent,
-    canDeactivate: [guestGuardGuard],
+    title: 'Sign In',
+    canActivate: [guestGuard],
   },
-  { path: 'register', component: RegisterComponent },
-  { path: '**', component: NotfoundComponent },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    title: 'Register',
+    canActivate: [guestGuard],
+  },
+  { path: '**', component: NotfoundComponent, title: 'Page Not Found' },
 ];

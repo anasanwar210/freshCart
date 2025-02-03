@@ -1,8 +1,8 @@
 <nav class="sticky inset-0 z-10 bg-gray-200 border-gray-200 dark:bg-gray-900">
-  <div class="flex flex-col  md:grid md:grid-cols-[20%_minmax(0,1fr)] max-w-screen-xl p-4 mx-auto">
+  <div class="flex flex-col md:grid md:grid-cols-[20%_minmax(0,1fr)] max-w-screen-xl p-4 mx-auto">
     <div class="flex justify-between">
       <a [routerLink]="isRegisterPage?'':'home'" class="flex items-center justify-center space-x-3 rtl:space-x-reverse">
-        <img src="assets/images/freshcart-logo.svg" class="h-8 invert" alt="Flowbite Logo" />
+        <img src="assets/images/freshcart-logo.svg" class="h-8 dark:invert" alt="Flowbite Logo" />
       </a>
       <!-- <li>
           <div class="relative inline-block w-10 mr-2 align-middle transition duration-200 ease-in select-none">
@@ -23,7 +23,7 @@
       </button>
 
     </div>
-    <div class="hidden w-full md:flex md:justify-between md:px-2 md:w-auto ms-auto" id="navbar-default">
+    <div class="hidden w-full md:flex md:justify-between md:px-2 md:w-full ms-auto" id="navbar-default">
       <!-- @if (!isRegisterPage) { -->
       <ul
         class="flex flex-col gap-2 p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 md:flex-row md:space-x-1 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">

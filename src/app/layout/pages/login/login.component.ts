@@ -6,12 +6,12 @@ import {
   AbstractControl,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -28,7 +28,7 @@ export class LoginComponent {
     ]),
   });
 
-  submitLogin() {
+  submitLogin(): void {
     if (this.logInForm.valid) {
       this.dataSent = true;
       this._AuthService.signin(this.logInForm.value).subscribe({

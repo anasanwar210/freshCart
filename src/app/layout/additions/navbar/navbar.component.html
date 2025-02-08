@@ -1,4 +1,4 @@
-<nav class="sticky inset-0 z-10 bg-gray-200 border-gray-200 dark:bg-gray-900">
+<nav class="sticky inset-0 z-50 bg-gray-200 border-gray-200 dark:bg-gray-900">
   <div class="flex flex-col md:grid md:grid-cols-[20%_minmax(0,1fr)] max-w-screen-xl p-4 mx-auto">
     <div class="flex justify-between">
       <a [routerLink]="isRegisterPage?'':'home'" class="flex items-center justify-center space-x-3 rtl:space-x-reverse">
@@ -79,8 +79,9 @@
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
               </li>
               <li class="mb-3">
-                <a href="#"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                <a routerLink="/changePassword"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Change
+                  Password</a>
               </li>
               <li class="flex items-center justify-center gap-3">
                 <a href=""><i class="fa-brands fa-instagram dark:text-white"></i></a>
@@ -114,8 +115,9 @@
         </li>
         @if (isLogin) {
         <li class="mb-3">
-          <a
-            class="block px-4 py-2 text-black rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+          <a routerLink="/changePassword"
+            class="block px-4 py-2 text-black rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Change
+            Password</a>
         </li>
         }
 

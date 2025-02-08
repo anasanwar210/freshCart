@@ -1,0 +1,11 @@
+<owl-carousel-o [options]="customOptions">
+  @for (cat of categories; track cat._id) {
+  <ng-template carouselSlide>
+    <div
+      class="flex flex-col items-center gap-4 p-4 transition-all duration-300 bg-white rounded-lg shadow-lg dark:bg-gray-800 hover:scale-105 hover:shadow-2xl">
+      <img [src]="cat.image" [alt]="cat.name" class="h-[250px] object-cover rounded-lg" [title]="cat.name">
+      <h3 class="mt-2 font-semibold text-gray-800 text-md dark:text-gray-200">{{cat.name}}</h3>
+    </div>
+  </ng-template>
+  }
+</owl-carousel-o>

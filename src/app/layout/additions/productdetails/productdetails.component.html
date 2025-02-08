@@ -1,1 +1,58 @@
-<p>productdetails works!</p>
+@if (currentProduct) {
+<div
+  class="overflow-hidden my-6 max-w-5xl mx-auto p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-lg transform transition-all duration-300">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="relative w-3/4">
+      <!-- <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="mySwiper"
+        thumbs-swiper=".mySwiper2" space-between="10" navigation="true">
+        @for (slide of currentProduct.images; track $index) {
+        <swiper-slide lazy="true">
+          <img [src]="slide" [alt]="currentProduct.title" class="w-full rounded-xl shadow-md" loading="lazy">
+        </swiper-slide>
+        }
+      </swiper-container>
+      <swiper-container class="mySwiper2" space-between="10" slides-per-view="4" free-mode="true"
+        watch-slides-progress="true">
+        @for (slide of currentProduct.images; track $index) {
+        <swiper-slide lazy="true">
+          <img [src]="slide" [alt]="currentProduct.title" class="w-full rounded-xl shadow-md" loading="lazy">
+        </swiper-slide>
+        }
+      </swiper-container> -->
+      <swiper-container effect="cards" grap-cursor="true">
+        @for (slide of currentProduct.images; track $index) {
+        <swiper-slide>
+          <img [src]="slide" [alt]="currentProduct.title" class="w-full rounded-xl shadow-md">
+        </swiper-slide>
+        }
+      </swiper-container>
+    </div>
+
+
+
+    <div class="flex flex-col justify-center">
+      <div>
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">{{currentProduct.title}}</h2>
+        <p class="text-gray-600 dark:text-gray-400 text-lg mb-4">{{currentProduct.price}} EGP</p>
+        <div class="flex items-center mb-4">
+          @for (star of [1,2,3,4,5]; track $index) {<i class="fa fa-star text-yellow-300"></i>} <span
+            class="ml-2 text-gray-600 dark:text-gray-400">({{currentProduct.ratingsQuantity}} Reviews)</span>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+          {{currentProduct.description}}
+        </p>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-center space-x-4">
+        <button
+          class="px-6 py-3 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transform transition-all duration-300 hover:scale-105">Buy
+          Now</button>
+        <button
+          class="px-6 py-3 bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg shadow-lg hover:bg-gray-300 dark:hover:bg-gray-700 transform transition-all duration-300 hover:scale-105">Add
+          to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+}

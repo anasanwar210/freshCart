@@ -4,6 +4,7 @@ import {
   provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter, RouterModule, withHashLocation } from '@angular/router';
+import { provideToastr, ToastrModule } from 'ngx-toastr';
 
 import { routes } from './app.routes';
 import {
@@ -11,7 +12,10 @@ import {
   withEventReplay,
 } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  BrowserAnimationsModule,
+  provideAnimations,
+} from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +23,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withHashLocation()),
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
-    importProvidersFrom(RouterModule, BrowserAnimationsModule),
+    importProvidersFrom(RouterModule, BrowserAnimationsModule, ToastrModule),
+    provideAnimations(),
+    provideToastr(),
   ],
 };

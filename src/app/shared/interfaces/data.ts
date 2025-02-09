@@ -88,3 +88,21 @@ export interface IChangePasswordData {
 }
 
 export interface IChangePasswordResponse extends ISubmitCodeResponse {}
+
+// Change Password Interface
+export interface IChangePassword {
+  message: string;
+  user: IUser;
+  token: string;
+}
+
+export interface IUser {
+  name: string;
+  email: string;
+  role: string;
+}
+
+export interface IFailChange {
+  statusMsg: string;
+  message: string;
+}

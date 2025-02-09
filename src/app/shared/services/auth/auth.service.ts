@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import {
+  IChangePassword,
   IChangePasswordData,
   IChangePasswordResponse,
   IFailSignInResponse,
@@ -19,6 +20,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { environment } from '../../../environment/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 
 @Injectable({
   providedIn: 'root',
@@ -32,17 +34,22 @@ export class AuthService {
     private _Router: Router
   ) {
     if (isPlatformBrowser(id)) {
-      if (localStorage.getItem('token') != null) {
+      const token = localStorage.getItem('token');
+      if (token) {
+        this.tokenDecoded();
         this.verifyToken().subscribe({
           next: () => {
             this.tokenDecoded();
           },
           error: () => {
-            this.logout();
+            if (token) {
+              this.verifyToken();
+              this.tokenDecoded();
+            } else {
+              this.logout();
+            }
           },
         });
-
-        this.tokenDecoded();
       }
     }
   }
@@ -127,6 +134,28 @@ export class AuthService {
     return this.http.put<IChangePasswordResponse>(
       `${environment.baseURL}/api/v1/auth/resetPassword`,
       data
+    );
+  }
+
+  changeCurrentPassword(
+    curPass: string,
+    newPass: string,
+    reNewPass: string
+  ): Observable<IChangePassword> {
+    const body = {
+      currentPassword: curPass,
+      password: newPass,
+      rePassword: reNewPass,
+    };
+
+    return this.http.put<IChangePassword>(
+      `${environment.baseURL}/api/v1/users/changeMyPassword`,
+      body,
+      {
+        headers: {
+          token: localStorage.getItem('token') || '',
+        },
+      }
     );
   }
 }

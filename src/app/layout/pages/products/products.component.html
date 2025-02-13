@@ -1,6 +1,93 @@
-<swiper-container class="mySwiper" pagination="true" pagination-clickable="true" direction="vertical" space-between="30"
-  mousewheel="true">
+<!-- <swiper-container class="w-full mySwiper sm:w-3/4 lg:w-1/2 xl:w-1/3" pagination="false" loop="true" effect="coverflow"
+  grab-cursor="true" centered-slides="true" slides-per-view="auto" coverflow-effect-rotate="50"
+  coverflow-effect-stretch="0" coverflow-effect-depth="100" coverflow-effect-modifier="1"
+  coverflow-effect-slide-shadows="true">
+  <ng-container>
+    @for (product of allProducts; track $index) {
+    <swiper-slide>
+      <img [src]="product.imageCover" [alt]="product.title" class="object-cover w-full h-auto rounded-lg">
+    </swiper-slide>
+    }
+  </ng-container>
+</swiper-container> -->
+
+<swiper-container #swiperRef
+  class="w-full h-64 my-5 text-gray-800 bg-white sm:h-80 md:h-96 lg:h-112 xl:h-128 dark:bg-gray-800 dark:text-white"
+  pagination="false" effect="coverflow" grab-cursor="true" centered-slides="true" slides-per-view="auto"
+  coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100" coverflow-effect-modifier="1"
+  coverflow-effect-slide-shadows="true" [slidesPerView]="3" [loop]="true"
+  [autoplay]="{ delay: 2000, disableOnInteraction: false }">
+
   @for (product of allProducts; track $index) {
-  <swiper-slide><img [src]="product.imageCover" [alt]="product.title"></swiper-slide>
+  <swiper-slide class="transition-transform duration-300 ease-in-out">
+    <div class="h-full">
+      <img [src]="product.imageCover" [alt]="product.title"
+        class="object-cover w-full h-full transition-transform duration-500 ease-in-out rounded-lg" />
+    </div>
+  </swiper-slide>
   }
+
 </swiper-container>
+
+
+<section class="relative py-8 bg-gray-100 md:flex-wrap dark:bg-gray-800">
+  @if (allProducts) {
+  <div class="grid grid-cols-1 gap-6 px-4 md:grid-cols-4 lg:grid-cols-6">
+    @for (product of allProducts; track $index) {
+    <div
+      class="relative overflow-hidden transition-transform duration-300 bg-white rounded-lg shadow-md cursor-pointer dark:bg-gray-700 inner group hover:scale-105 hover:shadow-lg">
+      <button (click)="addProduct(product._id)"
+        class="absolute p-2 text-xl text-white transition-all duration-300 bg-green-500 border border-solid rounded-full shadow-md opacity-0 hover:bg-white hover:text-green-500 hover:border-green-500 top-2 right-2 group-hover:opacity-100">
+        +
+      </button>
+
+      <button
+        class="absolute p-2 text-xl text-gray-500 transition-all duration-300 dark:text-gray-300 top-2 left-2 hover:text-red-500 group-hover:scale-110">
+        <i class="fa fa-heart"></i>
+      </button>
+
+      <div [routerLink]="['/details' , product._id]">
+        <div>
+          <img [src]="product.imageCover" class="w-full h-[200px] object-cover" [alt]="product.title">
+        </div>
+
+        <div class="p-2">
+          <div class="text-center info">
+            <h4 class="text-sm text-gray-600 uppercase dark:text-gray-300">{{product.brand.name}}</h4>
+            <h2 class="font-bold text-gray-800 dark:text-gray-100 text-md">{{product.title.split(" ",2).join(" ")}}</h2>
+          </div>
+          <div class="flex items-center justify-between mt-4 text-gray-700 dark:text-gray-300 price">
+            <span class="font-semibold text-md">{{product.price}} EGP</span>
+            <span class="flex items-center gap-1">
+              <i class="text-yellow-300 fa fa-star"></i>
+              <span>{{product.ratingsQuantity}}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="flex items-center justify-center w-full mt-8">
+    <a (click)="prevFun()" [class]="{'cursor-not-allowed': pageNO === 1}" [class.disabled]="pageNO === 1"
+      class="flex items-center justify-center h-8 px-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg cursor-pointer me-3 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+      <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+        viewBox="0 0 14 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M13 5H1m0 0 4 4M1 5l4-4" />
+      </svg>
+      Previous
+    </a>
+    <a (click)="nextFun()" [class]="{'cursor-not-allowed': pageNO === 2}" [class.disabled]="pageNO === 2"
+      class="flex items-center justify-center h-8 px-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+      Next
+      <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+        viewBox="0 0 14 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M1 5h12m0 0L9 1m4 4L9 9" />
+      </svg>
+    </a>
+  </div>
+  }
+</section>

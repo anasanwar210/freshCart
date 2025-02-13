@@ -1,17 +1,24 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ViewChild,
+} from '@angular/core';
 import { ProductsService } from '../../../shared/services/products.service';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../../shared/services/cart/cart.service';
 import { IData } from '../../../shared/interfaces/products';
+import Swiper from 'swiper';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class ProductsComponent {
+export class ProductsComponent implements AfterViewInit {
   pageNO: number = 1;
   allProducts!: IData[];
   constructor(
@@ -49,5 +56,18 @@ export class ProductsComponent {
         console.log(res);
       },
     });
+  }
+
+  @ViewChild('swiperRef', { static: false }) swiperRef: any;
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        if (this.swiperRef?.nativeElement?.swiper) {
+          this.swiperRef.nativeElement.swiper.update();
+          this.swiperRef.nativeElement.swiper.autoplay.start();
+        }
+      });
+    }, 100);
   }
 }

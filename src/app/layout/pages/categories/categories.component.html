@@ -1,1 +1,11 @@
-<p>categories works!</p>
+<div class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+  @for (category of allCat; track $index) {
+  <div class="overflow-hidden transition-all bg-white rounded-lg shadow-lg dark:bg-gray-800 hover:scale-105">
+    <img [src]="category.image" alt="{{category.name}}" class="object-cover w-full h-40">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold text-gray-800 dark:text-white">{{ category.name }}</h3>
+      <p class="text-sm text-gray-600 dark:text-gray-300">{{ category.slug | titlecase }}</p>
+    </div>
+  </div>
+  }
+</div>

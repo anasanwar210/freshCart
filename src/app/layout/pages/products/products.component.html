@@ -1,1 +1,6 @@
-<p>products works!</p>
+<swiper-container class="mySwiper" pagination="true" pagination-clickable="true" direction="vertical" space-between="30"
+  mousewheel="true">
+  @for (product of allProducts; track $index) {
+  <swiper-slide><img [src]="product.imageCover" [alt]="product.title"></swiper-slide>
+  }
+</swiper-container>

@@ -3,22 +3,6 @@
   class="overflow-hidden my-6 max-w-5xl mx-auto p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-lg transform transition-all duration-300">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <div class="relative w-3/4">
-      <!-- <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="mySwiper"
-        thumbs-swiper=".mySwiper2" space-between="10" navigation="true">
-        @for (slide of currentProduct.images; track $index) {
-        <swiper-slide lazy="true">
-          <img [src]="slide" [alt]="currentProduct.title" class="w-full rounded-xl shadow-md" loading="lazy">
-        </swiper-slide>
-        }
-      </swiper-container>
-      <swiper-container class="mySwiper2" space-between="10" slides-per-view="4" free-mode="true"
-        watch-slides-progress="true">
-        @for (slide of currentProduct.images; track $index) {
-        <swiper-slide lazy="true">
-          <img [src]="slide" [alt]="currentProduct.title" class="w-full rounded-xl shadow-md" loading="lazy">
-        </swiper-slide>
-        }
-      </swiper-container> -->
       <swiper-container effect="cards" grap-cursor="true">
         @for (slide of currentProduct.images; track $index) {
         <swiper-slide>

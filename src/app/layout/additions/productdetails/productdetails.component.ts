@@ -34,7 +34,6 @@ export class ProductdetailsComponent implements OnInit {
     this._ProductsService.getProductById(this.id).subscribe({
       next: (product) => {
         this.currentProduct = product.data;
-        console.log(this.currentProduct);
       },
     });
   }

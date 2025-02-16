@@ -1,0 +1,85 @@
+<section
+  class="flex items-center justify-center w-full min-h-screen bg-gradient-to-br from-blue-100 to-white dark:from-gray-900 dark:to-gray-800">
+  <form [formGroup]="shippingAddress" (ngSubmit)="sendAddress()"
+    class="p-8 bg-white shadow-md rounded-2xl w-96 dark:bg-gray-700 dark:text-gray-300">
+    <h2 class="mb-6 text-2xl font-semibold text-center">Shipping Address</h2>
+
+    @if (errMsg) {
+    <div class="my-1 alert">
+      <p>{{ errMsg }}</p>
+    </div>
+    }
+
+    <!-- Details Input -->
+    <div class="relative mb-4">
+      <label class="block mb-1 text-gray-600 dark:text-gray-400">Details</label>
+      <input formControlName="details" type="text" placeholder="5 th Avenue OR 15 Tahrir Street ... etc"
+        class="w-full p-3 pl-12 border rounded-lg focus:ring-2 focus:ring-blue-400 dark:bg-gray-600 dark:border-gray-500 dark:text-white dark:placeholder-gray-400">
+      <svg class="absolute w-6 h-6 text-blue-500 left-3 top-10 dark:text-blue-300" xmlns="http://www.w3.org/2000/svg"
+        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M3 10h11M9 21V3m3 18h-6m6 0l3-3m-3 3l-3-3" />
+      </svg>
+      @if (shippingAddress.get('details')?.errors && shippingAddress.get('details')?.touched) {
+      <div class="mt-1 alert">
+        @if (shippingAddress.get('details')?.errors?.['required']) {
+        <p>Details is Required</p>
+        }@else if (shippingAddress.get('details')?.errors?.['pattern']) {
+        <p>Please enter a valid address, e.g., 123 Main St. or شارع النيل.</p>
+        }
+      </div>
+      }
+    </div>
+
+    <!-- Phone Input -->
+    <div class="relative mb-4">
+      <label class="block mb-1 text-gray-600 dark:text-gray-400">Phone</label>
+      <input formControlName="phone" type="tel" placeholder="01010700999"
+        class="w-full p-3 pl-12 border rounded-lg focus:ring-2 focus:ring-blue-400 dark:bg-gray-600 dark:border-gray-500 dark:text-white dark:placeholder-gray-400">
+      <svg class="absolute w-6 h-6 text-blue-500 left-3 top-10 dark:text-blue-300" xmlns="http://www.w3.org/2000/svg"
+        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 6h20M2 12h20m-7 6h7" />
+      </svg>
+      @if (shippingAddress.get('phone')?.errors && shippingAddress.get('phone')?.touched) {
+      <div class="mt-1 alert">
+        @if (shippingAddress.get('phone')?.errors?.['required']) {
+        <p>Your Phone is Required</p>
+        }@else if (shippingAddress.get('phone')?.errors?.['pattern']) {
+        <p>Please enter a valid Egyptian phone number starting with 010, 011, 012, or 015 (e.g., 01012345678).</p>
+        }
+      </div>
+      }
+    </div>
+
+    <!-- City Select with Search -->
+    <div class="relative mb-4">
+      <label class="block mb-1 text-gray-600 dark:text-gray-400">City</label>
+      <select formControlName="city"
+        class="w-full p-3 pl-12 border rounded-lg focus:ring-2 focus:ring-blue-400 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+        <option class="dark:bg-gray-700 dark:text-white" [value]="''" disabled selected>Choose Your City</option>
+        @for (city of allCities; track $index) {
+        <option [value]="city.name" class="dark:bg-gray-700 dark:text-white">
+          {{city.name}}
+        </option>
+        }
+      </select>
+      <svg class="absolute w-6 h-6 text-blue-500 left-3 top-10 dark:text-blue-300" xmlns="http://www.w3.org/2000/svg"
+        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+      </svg>
+      @if (shippingAddress.get('city')?.errors && shippingAddress.get('city')?.touched) {
+      <div class="mt-1 alert">
+        @if (shippingAddress.get('city')?.errors?.['required']) {
+        <p>Your City is Required</p>
+        }
+      </div>
+      }
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      class="w-full p-3 font-semibold text-white transition-all duration-300 transform bg-green-500 rounded-lg hover:bg-green-600 hover:scale-105 dark:bg-green-500 dark:hover:bg-green-600">
+      Submit
+    </button>
+  </form>
+</section>

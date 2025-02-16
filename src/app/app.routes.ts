@@ -14,6 +14,9 @@ import { RegisterComponent } from './layout/pages/register/register.component';
 import { guestGuard } from './shared/guard/guest/guest.guard';
 import { authGuard } from './shared/guards/auth/auth.guard';
 import { ChangePasswordComponent } from './layout/additions/change-password/change-password.component';
+import { CheckoutComponent } from './layout/additions/checkout/checkout.component';
+import { AllordersComponent } from './layout/additions/allorders/allorders.component';
+import { WishlistComponent } from './layout/additions/wishlist/wishlist.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,6 +32,24 @@ export const routes: Routes = [
     path: 'changePassword',
     component: ChangePasswordComponent,
     title: 'Change Password',
+  },
+  {
+    path: 'wishlist',
+    component: WishlistComponent,
+    title: 'Wish List',
+    canActivate: [authGuard],
+  },
+  {
+    path: 'allorders',
+    component: AllordersComponent,
+    title: 'All Orders',
+    canActivate: [authGuard],
+  },
+  {
+    path: 'checkout/:id',
+    component: CheckoutComponent,
+    title: 'Checkout',
+    canActivate: [authGuard],
   },
   { path: 'categories', component: CategoriesComponent, title: 'Categories' },
   { path: 'details/:id', component: ProductdetailsComponent, title: 'Details' },

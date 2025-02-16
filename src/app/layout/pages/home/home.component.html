@@ -11,10 +11,15 @@
         +
       </button>
 
-      <button
-        class="absolute p-2 text-xl text-gray-500 transition-all duration-300 dark:text-gray-300 top-2 left-2 hover:text-red-500 group-hover:scale-110">
-        <i class="fa fa-heart"></i>
+      <button (click)="toggleWishList(product._id)"
+        class="absolute p-2 text-xl transition-all duration-300 top-2 left-2 hover:scale-110">
+        <i class="fa fa-heart hover:text-red-500" [class.text-red-500]="wishListProducts.includes(product._id)"
+          [class.text-beige-500]="!wishListProducts.includes(product._id)"
+          [class.fa-solid]="wishListProducts.includes(product._id)"
+          [class.fa-regular]="!wishListProducts.includes(product._id)">
+        </i>
       </button>
+
 
       <div [routerLink]="['/details' , product._id]">
         <div>

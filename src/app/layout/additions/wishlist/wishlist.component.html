@@ -1,0 +1,52 @@
+<div class="min-h-screen p-6 bg-gray-100 dark:bg-gray-900">
+  <div class="max-w-4xl mx-auto">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      @if (allWishListProducts) {
+      @for (product of allWishListProducts; track $index) {
+      <div
+        class="overflow-hidden transition-all duration-300 transform bg-white rounded-lg shadow-lg dark:bg-gray-800 hover:scale-105 hover:shadow-2xl">
+        <div class="relative">
+          <button (click)="removeFromWishList(product._id)"
+            class="absolute p-1 text-white transition-colors duration-300 bg-red-500 rounded-full top-2 left-2 sm:p-2 hover:bg-red-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:h-5 sm:w-5" viewBox="0 0 20 20"
+              fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+          <img [routerLink]="['/details' , product._id]" routerLinkActive="router-link-active"
+            class="object-cover w-full h-32 cursor-pointer sm:h-48" [src]="product.imageCover" [alt]="product.title">
+          <div class="absolute px-2 py-1 text-xs text-white bg-green-500 rounded-full top-2 right-2">
+            <span>{{product.ratingsAverage}} <i class="text-yellow-400 fa fa-star"></i></span>
+          </div>
+        </div>
+        <div class="p-3 sm:p-4">
+          <h3 [routerLink]="['/details' , product._id]"
+            class="text-base font-semibold text-gray-800 cursor-pointer sm:text-lg dark:text-white line-clamp-1">
+            {{product.title}}
+          </h3>
+          <p [routerLink]="['/details' , product._id]"
+            class="mt-1 text-xs text-gray-600 cursor-pointer line-clamp-4 sm:text-sm dark:text-gray-300 sm:mt-2">
+            {{product.description}}
+          </p>
+          <div class="flex items-center justify-between mt-2 sm:mt-4">
+            <span class="text-lg font-bold text-green-500 sm:text-xl">${{product.price}}</span>
+            <button (click)="addProduct(product._id)"
+              class="px-3 py-1 text-xs text-white transition-colors duration-300 bg-green-500 rounded-full sm:px-4 sm:py-2 hover:bg-green-600 sm:text-sm">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+        <div class="px-3 py-2 sm:px-4 sm:py-2 bg-gray-50 dark:bg-gray-700">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-500 sm:text-sm dark:text-gray-400">In Stock: {{product.quantity}}</span>
+            <span class="text-xs text-gray-500 sm:text-sm dark:text-gray-400">Sold: {{product.sold}}</span>
+          </div>
+        </div>
+      </div>
+      }
+      }
+    </div>
+  </div>
+</div>

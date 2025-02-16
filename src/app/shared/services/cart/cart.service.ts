@@ -49,4 +49,10 @@ export class CartService {
       }
     );
   }
+
+  clearCart(): Observable<any> {
+    return this._HttpClient.delete<any>(`${environment.baseURL}/api/v1/cart`, {
+      headers: { token: localStorage.getItem('token') || '' },
+    });
+  }
 }

@@ -37,7 +37,6 @@ export class SubmitCodeComponent {
         error: (err) => {
           this.dataSent = false;
           this.errMSG = err.error.message;
-          console.log(err);
         },
       });
     }

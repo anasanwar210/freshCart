@@ -85,7 +85,6 @@ export class ChangePasswordComponent {
         .subscribe({
           next: (res) => {
             this.dataSent = false;
-            console.log(res);
             this._ToastrService.success(res.message, 'Change Password', {
               progressBar: true,
               positionClass: 'toast-bottom-right',
@@ -94,7 +93,6 @@ export class ChangePasswordComponent {
           error: (err) => {
             this.dataSent = false;
             this.errMsg = err.error.message;
-            console.log(err);
             this._ToastrService.error(err.error.message, 'Change Password', {
               progressBar: true,
               positionClass: 'toast-bottom-right',

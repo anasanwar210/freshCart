@@ -44,15 +44,13 @@ export class NewPasswordComponent {
       this.dataSent = true;
       this._AuthService.newPassword(this.setNewPasswordForm.value).subscribe({
         next: (res) => {
-          this._Router.navigate(['/signin']);
+          this._Router.navigate(['home']);
           this.dataSent = false;
           this.resetForm();
-          console.log(res);
         },
         error: (err) => {
           this.dataSent = false;
           this.errMSG = err.error.message;
-          console.log(err);
         },
       });
     }
@@ -65,7 +63,7 @@ export class NewPasswordComponent {
   ngOnInit(): void {
     const savedEmail = localStorage.getItem('currentUser');
     if (savedEmail) {
-      this.setNewPasswordForm.patchValue({ email: savedEmail }); // ✅ يتم تحديث الحقل بالقيمة
+      this.setNewPasswordForm.patchValue({ email: savedEmail });
     }
   }
 }

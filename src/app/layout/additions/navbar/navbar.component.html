@@ -29,25 +29,27 @@
         class="flex flex-col gap-2 p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 md:flex-row md:space-x-1 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li>
           <a routerLink="home" routerLinkActive="bg-green-400 text-white rounded-lg"
-            class="block px-3 py-2 text-white dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
+            class="block px-3 py-2 text-white transition-all duration-300 hover:bg-green-400 hover:rounded-lg dark:text-white "
+            aria-current="page">Home</a>
         </li>
         @if (isLogin) {
         <li>
-          <a routerLink="cart" routerLinkActive="bg-green-400 text-white rounded-lg"
-            class="block px-3 py-2 text-white md:border-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Cart</a>
+          <a routerLink="wishlist" routerLinkActive="bg-green-400 text-white rounded-lg"
+            class="block px-3 py-2 text-white transition-all duration-300 hover:bg-green-400 hover:rounded-lg dark:text-white "
+            aria-current="page">Wish List</a>
         </li>
         }
         <li>
           <a routerLink="products" routerLinkActive="bg-green-400 text-white rounded-lg"
-            class="block px-3 py-2 text-white md:border-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Products</a>
+            class="block px-3 py-2 text-white transition-all duration-300 hover:bg-green-400 hover:rounded-lg md:border-0 dark:text-white ">Products</a>
         </li>
         <li>
           <a routerLink="categories" routerLinkActive="bg-green-400 text-white rounded-lg"
-            class="block px-3 py-2 text-white md:border-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Categories</a>
+            class="block px-3 py-2 text-white transition-all duration-300 hover:bg-green-400 hover:rounded-lg md:border-0 dark:text-white ">Categories</a>
         </li>
         <li>
           <a routerLink="brands" routerLinkActive="bg-green-400 text-white rounded-lg"
-            class="block px-3 py-2 text-white md:border-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Brands</a>
+            class="block px-3 py-2 text-white transition-all duration-300 hover:bg-green-400 hover:rounded-lg md:border-0 dark:text-white ">Brands</a>
         </li>
       </ul>
       <!-- } -->
@@ -57,15 +59,23 @@
         @if (!isLogin) {
         <li>
           <a routerLink="signin" routerLinkActive="bg-green-400 text-white rounded-lg"
-            class="block px-3 py-2 text-white dark:text-white md:dark:text-blue-500" aria-current="page">SignIn</a>
+            class="block px-3 py-2 text-white transition-all duration-300 hover:bg-green-400 hover:rounded-lg dark:text-white "
+            aria-current="page">SignIn</a>
         </li>
         <li>
           <a routerLink="register" routerLinkActive="bg-green-400 text-white rounded-lg"
-            class="block px-3 py-2 text-white md:border-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Register</a>
+            class="block px-3 py-2 text-white transition-all duration-300 hover:bg-green-400 hover:rounded-lg md:border-0 dark:text-white ">Register</a>
         </li>
         }
 
         @if (isLogin) {
+        <!-- @if (isLogin) { -->
+        <li>
+          <a routerLink="cart" routerLinkActive="bg-green-400 text-white rounded-lg"
+            class="block px-3 py-2 text-green-400 transition-all duration-300 hover:bg-green-400 hover:text-white hover:rounded-lg md:border-0 dark:text-white "><i
+              class=" fas fa-xl fa-shopping-cart"></i></a>
+        </li>
+        <!-- } -->
         <li class="flex items-center mx-3">
           <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
             class="flex items-center justify-between w-full px-3 py-2 text-black rounded-sm cursor-pointer hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"><img
@@ -75,8 +85,8 @@
             class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
             <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
               <li>
-                <a href="#"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                <a routerLink="/allorders"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My Orders</a>
               </li>
               <li class="mb-3">
                 <a routerLink="/changePassword"
@@ -124,11 +134,11 @@
         <!-- @if (!isLogin) {
         <li class="hidden">
           <a routerLink="signin" routerLinkActive="bg-green-400 text-white rounded-lg"
-            class="block px-3 py-2 text-white dark:text-white md:dark:text-blue-500" aria-current="page">SignIn</a>
+            class="block px-3 py-2 text-white dark:text-white " aria-current="page">SignIn</a>
         </li>
         <li class="hidden">
           <a routerLink="register" routerLinkActive="bg-green-400 text-white rounded-lg"
-            class="block px-3 py-2 text-white md:border-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Register</a>
+            class="block px-3 py-2 text-white md:border-0 dark:text-white ">Register</a>
         </li>
         } -->
         @if (isLogin) {
@@ -146,11 +156,11 @@
         @if (!isLogin) {
         <li>
           <a routerLink="signin" routerLinkActive="bg-green-400 text-white rounded-lg"
-            class="block px-3 py-2 text-white dark:text-white md:dark:text-blue-500" aria-current="page">SignIn</a>
+            class="block px-3 py-2 text-white dark:text-white " aria-current="page">SignIn</a>
         </li>
         <li>
           <a routerLink="register" routerLinkActive="bg-green-400 text-white rounded-lg"
-            class="block px-3 py-2 text-white md:border-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Register</a>
+            class="block px-3 py-2 text-white md:border-0 dark:text-white ">Register</a>
         </li>
         }
       </ul>

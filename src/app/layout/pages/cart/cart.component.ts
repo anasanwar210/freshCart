@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../shared/services/cart/cart.service';
 import { ICartData } from '../../../shared/interfaces/cart';
 import { ToastrService } from 'ngx-toastr';
@@ -10,21 +10,23 @@ import { RouterLink } from '@angular/router';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   cartData!: ICartData;
   totalPrice!: number;
   constructor(
     private _CartService: CartService,
     private _ToastrService: ToastrService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.cartItems();
   }
+
   cartItems() {
     this._CartService.getAllCartProducts().subscribe({
       next: (res) => {
         this.cartData = res.data;
         this.totalPrice = res.data.totalCartPrice;
-        console.log(this.cartData);
       },
     });
   }
@@ -32,15 +34,11 @@ export class CartComponent {
   removeProduct(id: string) {
     this._CartService.removeProductFromCart(id).subscribe({
       next: (res) => {
-        console.log(res);
         this._ToastrService.success(res.status, 'Remove Product', {
           progressBar: true,
           positionClass: 'toast-bottom-right',
         });
         this.cartItems();
-      },
-      error: (err) => {
-        console.log(err);
       },
     });
   }
@@ -49,7 +47,6 @@ export class CartComponent {
     this._CartService.updateQuantity(id, count).subscribe({
       next: (res) => {
         this.cartItems();
-        console.log(res);
       },
     });
   }
@@ -58,7 +55,18 @@ export class CartComponent {
     this._CartService.updateQuantity(id, count).subscribe({
       next: (res) => {
         this.cartItems();
-        console.log(res);
+      },
+    });
+  }
+
+  clearCart() {
+    this._CartService.clearCart().subscribe({
+      next: (res) => {
+        this._ToastrService.success(res.status, 'Remove Product', {
+          progressBar: true,
+          positionClass: 'toast-bottom-right',
+        });
+        this.cartItems();
       },
     });
   }

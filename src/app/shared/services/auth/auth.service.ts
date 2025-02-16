@@ -28,6 +28,8 @@ import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 export class AuthService {
   userData: BehaviorSubject<null | JwtPayload> =
     new BehaviorSubject<null | JwtPayload>(null);
+
+  userId!: string;
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) id: object,
@@ -112,8 +114,9 @@ export class AuthService {
   // Other methods for authentication and authorization
   tokenDecoded(): void {
     const token = localStorage.getItem('token') || '';
-    const decoded = jwtDecode(token);
+    const decoded: any = jwtDecode(token);
     this.userData.next(decoded);
+    this.userId = decoded.id;
   }
 
   verifyToken(): Observable<any> {

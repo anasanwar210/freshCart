@@ -18,7 +18,6 @@ export class BrandsComponent {
     this._BrandsService.getAllBrands().subscribe({
       next: (res) => {
         this.allBrands = res.data;
-        console.log(res);
       },
     });
   }

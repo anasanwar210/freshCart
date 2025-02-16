@@ -20,7 +20,6 @@ export class CategoriesComponent {
     this._CategoryService.getAllCategories().subscribe({
       next: (res) => {
         this.allCat = res.data;
-        console.log(res);
       },
     });
   }

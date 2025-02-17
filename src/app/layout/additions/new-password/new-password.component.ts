@@ -44,7 +44,7 @@ export class NewPasswordComponent {
       this.dataSent = true;
       this._AuthService.newPassword(this.setNewPasswordForm.value).subscribe({
         next: (res) => {
-          this._Router.navigate(['home']);
+          this._Router.navigate(['signin']);
           this.dataSent = false;
           this.resetForm();
         },

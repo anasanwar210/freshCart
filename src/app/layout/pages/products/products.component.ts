@@ -82,6 +82,7 @@ export class ProductsComponent implements AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.isLogin();
     this.getAllProducts();
     this.getWishList();
   }

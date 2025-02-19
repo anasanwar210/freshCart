@@ -121,9 +121,7 @@ export class AuthService {
 
   verifyToken(): Observable<any> {
     const token = localStorage.getItem('token') || '';
-    return this.http.get(`${environment.baseURL}/api/v1/auth/verifyToken`, {
-      headers: { token: token },
-    });
+    return this.http.get(`${environment.baseURL}/api/v1/auth/verifyToken`);
   }
 
   resetCode(data: ISubmitCodeData): Observable<ISubmitCodeResponse> {
@@ -153,12 +151,7 @@ export class AuthService {
 
     return this.http.put<IChangePassword>(
       `${environment.baseURL}/api/v1/users/changeMyPassword`,
-      body,
-      {
-        headers: {
-          token: localStorage.getItem('token') || '',
-        },
-      }
+      body
     );
   }
 }

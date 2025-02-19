@@ -11,30 +11,20 @@ export class CartService {
   constructor(private _HttpClient: HttpClient) {}
 
   addProductToCart(id: string): Observable<ICart> {
-    return this._HttpClient.post<ICart>(
-      `${environment.baseURL}/api/v1/cart`,
-      { productId: id },
-      {
-        headers: { token: localStorage.getItem('token') || '' },
-      }
-    );
+    return this._HttpClient.post<ICart>(`${environment.baseURL}/api/v1/cart`, {
+      productId: id,
+    });
   }
 
   getAllCartProducts(): Observable<ICartResponse> {
     return this._HttpClient.get<ICartResponse>(
-      `${environment.baseURL}/api/v1/cart`,
-      {
-        headers: { token: localStorage.getItem('token') || '' },
-      }
+      `${environment.baseURL}/api/v1/cart`
     );
   }
 
   removeProductFromCart(id: string): Observable<ICart> {
     return this._HttpClient.delete<ICart>(
-      `${environment.baseURL}/api/v1/cart/${id}`,
-      {
-        headers: { token: localStorage.getItem('token') || '' },
-      }
+      `${environment.baseURL}/api/v1/cart/${id}`
     );
   }
 
@@ -43,16 +33,11 @@ export class CartService {
       `${environment.baseURL}/api/v1/cart/${id}`,
       {
         count: count,
-      },
-      {
-        headers: { token: localStorage.getItem('token') || '' },
       }
     );
   }
 
   clearCart(): Observable<any> {
-    return this._HttpClient.delete<any>(`${environment.baseURL}/api/v1/cart`, {
-      headers: { token: localStorage.getItem('token') || '' },
-    });
+    return this._HttpClient.delete<any>(`${environment.baseURL}/api/v1/cart`);
   }
 }

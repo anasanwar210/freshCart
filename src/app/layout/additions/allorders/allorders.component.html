@@ -1,3 +1,4 @@
+@if (allOrders) {
 <div class="container p-6 mx-auto">
   <h1 class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">All Orders</h1>
 
@@ -6,10 +7,8 @@
       Order #{{ allOrders[0].id }}
     </h2>
 
-    <!-- Responsive Grid Layout -->
     <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
-      <!-- بيانات العميل -->
       <div
         class="p-6 transition-all duration-300 border border-gray-200 rounded-xl dark:border-gray-700 hover:bg-green-50 dark:hover:bg-green-900/20 hover:shadow-md">
         <p class="mb-3 text-lg font-semibold text-gray-700 dark:text-gray-300">Customer</p>
@@ -19,7 +18,6 @@
         <p class="mt-2 text-gray-600 break-words dark:text-gray-400">{{ allOrders[0].user.email }}</p>
       </div>
 
-      <!-- حالة الدفع -->
       <div
         class="p-6 transition-all duration-300 border border-gray-200 rounded-xl dark:border-gray-700 hover:bg-green-50 dark:hover:bg-green-900/20 hover:shadow-md">
         <p class="mb-3 text-lg font-semibold text-gray-700 dark:text-gray-300">Payment Status</p>
@@ -32,7 +30,6 @@
           HH:mm' }}</p>
       </div>
 
-      <!-- حالة التوصيل -->
       <div
         class="p-6 transition-all duration-300 border border-gray-200 rounded-xl dark:border-gray-700 hover:bg-green-50 dark:hover:bg-green-900/20 hover:shadow-md">
         <p class="mb-3 text-lg font-semibold text-gray-700 dark:text-gray-300">Delivery Status</p>
@@ -43,21 +40,18 @@
         </p>
       </div>
 
-      <!-- إجمالي الطلب -->
       <div
         class="p-6 transition-all duration-300 border border-gray-200 rounded-xl dark:border-gray-700 hover:bg-green-50 dark:hover:bg-green-900/20 hover:shadow-md">
         <p class="mb-3 text-lg font-semibold text-gray-700 dark:text-gray-300">Total Price</p>
         <p class="text-2xl font-bold text-gray-900 dark:text-gray-100">${{ allOrders[0].totalOrderPrice }}</p>
       </div>
 
-      <!-- طريقة الدفع -->
       <div
         class="p-6 transition-all duration-300 border border-gray-200 rounded-xl dark:border-gray-700 hover:bg-green-50 dark:hover:bg-green-900/20 hover:shadow-md sm:col-span-2 md:col-span-1">
         <p class="mb-3 text-lg font-semibold text-gray-700 dark:text-gray-300">Payment Method</p>
         <p class="text-gray-600 capitalize dark:text-gray-400">{{ allOrders[0].paymentMethodType }}</p>
       </div>
 
-      <!-- العنوان -->
       <div
         class="p-6 transition-all duration-300 border border-gray-200 rounded-xl dark:border-gray-700 hover:bg-green-50 dark:hover:bg-green-900/20 hover:shadow-md sm:col-span-2 md:col-span-2">
         <p class="mb-3 text-lg font-semibold text-gray-700 dark:text-gray-300">Shipping Address</p>
@@ -73,10 +67,6 @@
 
     </div>
   </div>
-
-
-
-
 
   <div class="mt-6">
     <h2 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">Order Items</h2>
@@ -96,9 +86,8 @@
           <p class="text-gray-700 dark:text-gray-300"><strong>Brand:</strong> {{ item.product.brand.name }}</p>
         </div>
       </div>
-
-
       }
     </div>
   </div>
 </div>
+}

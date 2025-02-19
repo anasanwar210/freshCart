@@ -68,6 +68,28 @@
         </li>
         }
 
+        <!-- 
+        ==============================================================
+                              Start Dark Mode Button 
+        ==============================================================
+        -->
+        <label for="theme" class="theme">
+          <span class="theme__toggle-wrap">
+            <input id="theme" (click)="themeService.toggleTheme()" class="hidden theme__toggle" type="checkbox"
+              role="switch" name="theme">
+            <span class="theme__icon">
+              <span class="theme__icon-part sun"></span>
+              <span class="theme__icon-part moon"></span>
+            </span>
+          </span>
+        </label>
+
+        <!-- 
+        ==============================================================
+                              End Dark Mode Button 
+        ==============================================================
+        -->
+
         @if (isLogin) {
         <!-- @if (isLogin) { -->
         <li>
@@ -122,6 +144,29 @@
           <a href=""><i class="fa-brands fa-twitter dark:text-white"></i></a>
           <a href=""><i class="fa-brands fa-linkedin dark:text-white"></i></a>
           <a href=""><i class="fa-brands fa-youtube dark:text-white"></i></a>
+        </li>
+        <li class="mb-3">
+          <!-- 
+        ==============================================================
+                              Start Dark Mode Button 
+        ==============================================================
+        -->
+          <label for="theme" class="theme">
+            <span class="theme__toggle-wrap">
+              <input id="theme" (click)="themeService.toggleTheme()" class="hidden theme__toggle" type="checkbox"
+                role="switch" name="theme">
+              <span class="theme__icon">
+                <span class="theme__icon-part sun"></span>
+                <span class="theme__icon-part moon"></span>
+              </span>
+            </span>
+          </label>
+
+          <!-- 
+        ==============================================================
+                              End Dark Mode Button 
+        ==============================================================
+        -->
         </li>
         @if (isLogin) {
         <li class="mb-3">

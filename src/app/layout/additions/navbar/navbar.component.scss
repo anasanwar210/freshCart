@@ -1,0 +1,80 @@
+.theme {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* خلفية تتغير بناءً على الحالة */
+body {
+  transition: background 0.5s ease-in-out;
+}
+
+body.light {
+  background: #f5f5f5; /* خلفية فاتحة */
+  color: #333;
+}
+
+body.dark {
+  background: #1a1a1a; /* خلفية داكنة */
+  color: #fff;
+}
+
+.theme__toggle-wrap {
+  width: 50px;
+  height: 25px;
+  background: #ddd;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  position: relative;
+  transition: background 0.3s ease-in-out;
+}
+
+.theme__icon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* الشمس */
+.sun {
+  width: 16px;
+  height: 16px;
+  background: yellow;
+  border-radius: 50%;
+  box-shadow: 0 0 4px 2px rgba(255, 223, 0, 0.6);
+  position: absolute;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* القمر */
+.moon {
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.5);
+  transform: translateX(24px);
+  opacity: 0;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* لما يتم تفعيل الزرار */
+.theme__toggle:checked + .theme__icon .sun {
+  transform: translateX(-15px);
+  opacity: 0;
+}
+
+.theme__toggle:checked + .theme__icon .moon {
+  transform: translateX(0);
+  opacity: 1;
+}

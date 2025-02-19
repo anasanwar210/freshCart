@@ -27,6 +27,7 @@ export class CartComponent implements OnInit {
       next: (res) => {
         this.cartData = res.data;
         this.totalPrice = res.data.totalCartPrice;
+        console.log(this.cartData);
       },
     });
   }

@@ -1,11 +1,5 @@
 import { IData } from './../../../shared/interfaces/products';
-import {
-  Component,
-  Inject,
-  OnDestroy,
-  OnInit,
-  PLATFORM_ID,
-} from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FirstSliderComponent } from '../../additions/sliders/home/first-slider/first-slider.component';
 import { ProductsService } from '../../../shared/services/products.service';
 import { SecondSliderComponent } from '../../additions/sliders/home/second-slider/second-slider.component';

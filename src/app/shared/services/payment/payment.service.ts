@@ -14,9 +14,6 @@ export class PaymentService {
       `${environment.baseURL}/api/v1/orders/checkout-session/${cartId}?url=http://localhost:4200`,
       {
         shippingAddress: formObj,
-      },
-      {
-        headers: { token: localStorage.getItem('token') || '' },
       }
     );
   }

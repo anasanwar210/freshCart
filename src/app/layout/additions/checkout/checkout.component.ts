@@ -30,7 +30,6 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCountries();
-    this.getCartId();
   }
 
   shippingAddress: FormGroup = new FormGroup({
@@ -52,27 +51,25 @@ export class CheckoutComponent implements OnInit {
 
   sendAddress() {
     if (this.shippingAddress.valid) {
-      this.errMsg = null;
-      this._PaymentService
-        .paymentByCredit(this.cartId, this.shippingAddress.value)
-        .subscribe({
-          next: (res) => {
-            if (res.status === 'success') {
-              open(res.session.url, '_self');
-            }
-          },
-        });
+      this._ActivatedRoute.paramMap.subscribe({
+        next: (cartId) => {
+          this.cartId = cartId.get('id') || '';
+          this.errMsg = null;
+          this._PaymentService
+            .paymentByCredit(this.cartId, this.shippingAddress.value)
+            .subscribe({
+              next: (res) => {
+                console.log(res);
+                if (res.status === 'success') {
+                  open(res.session.url, '_self');
+                }
+              },
+            });
+        },
+      });
     } else {
       this.errMsg = 'Please fill all fields correctly.';
     }
-  }
-
-  getCartId() {
-    this._ActivatedRoute.paramMap.subscribe({
-      next: (prodId) => {
-        this.cartId = prodId.get('id') || '';
-      },
-    });
   }
 
   getCountries() {

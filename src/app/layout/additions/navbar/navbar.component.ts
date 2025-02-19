@@ -3,6 +3,7 @@ import { FlowbiteService } from '../../../shared/services/flowbite/flowbite.serv
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import 'flowbite';
+import { ThemeService } from '../../../shared/services/theme/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +21,8 @@ export class NavbarComponent {
   isLogin: boolean = false;
   constructor(
     private flowbiteService: FlowbiteService,
-    public _AuthService: AuthService
+    public _AuthService: AuthService,
+    public themeService: ThemeService
   ) {}
   ngOnInit(): void {
     this._AuthService.userData.subscribe((res) => {

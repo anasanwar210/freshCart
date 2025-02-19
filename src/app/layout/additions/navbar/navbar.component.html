@@ -167,8 +167,21 @@
                               End Dark Mode Button 
         ==============================================================
         -->
+
         </li>
+
         @if (isLogin) {
+        <li>
+          <a routerLink="/allorders"
+            class="block px-4 py-2 text-black rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My
+            Orders</a>
+        </li>
+        <li>
+          <a routerLink="/cart" routerLinkActive="bg-green-400 text-white rounded-lg"
+            class="block px-4 py-2 text-black rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+            Cart
+          </a>
+        </li>
         <li class="mb-3">
           <a routerLink="/changePassword"
             class="block px-4 py-2 text-black rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Change

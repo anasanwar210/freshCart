@@ -44,9 +44,6 @@ body.dark {
 
 /* الشمس */
 .sun {
-  width: 16px;
-  height: 16px;
-  background: yellow;
   border-radius: 50%;
   box-shadow: 0 0 4px 2px rgba(255, 223, 0, 0.6);
   position: absolute;
@@ -55,14 +52,9 @@ body.dark {
 
 /* القمر */
 .moon {
-  width: 12px;
-  height: 12px;
-  background: white;
-  border-radius: 50%;
   position: absolute;
   left: 2px;
   top: 2px;
-  box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.5);
   transform: translateX(24px);
   opacity: 0;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;

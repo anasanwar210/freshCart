@@ -5,7 +5,7 @@ import { effect, Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class ThemeService {
-  private theme = signal<'light' | 'dark'>('light'); // استخدام Signals
+  private theme = signal<'light' | 'dark'>('light');
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {
     if (isPlatformBrowser(this.platformId)) {
@@ -15,8 +15,6 @@ export class ThemeService {
 
   private initTheme(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-
-    // التحقق من الـ localStorage أو تفعيل الوضع الداكن بناءً على إعدادات النظام
     const prefersDarkMode = window.matchMedia(
       '(prefers-color-scheme: dark)'
     ).matches;
